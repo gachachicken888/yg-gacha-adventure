@@ -1,0 +1,12 @@
+reassemble=success
+configure=success
+upload=success
+deploy=success
+verify=success
+html_http=200
+html_size=5449
+wasm_http=200
+wasm_size=39509339
+pck_http=200
+pck_size=16548956
+workflow_commit=3b134c6c089af48200a495fae78a44df6c461212
