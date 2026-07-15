@@ -29,6 +29,9 @@ jobs:
           gzip -dc index.wasm.gz > index.wasm
           test "$(stat -c%s index.wasm)" -eq 39509339
           rm -f index.wasm.gz index.wasm.gzpart*
+      - name: Configure GitHub Pages
+        id: configure
+        uses: actions/configure-pages@v5
       - name: Upload web build
         id: upload
         uses: actions/upload-pages-artifact@v3
@@ -71,7 +74,7 @@ jobs:
         shell: bash
         env:
           REASSEMBLE_OUTCOME: ${{ steps.reassemble.outcome }}
-          CONFIGURE_OUTCOME: not-used
+          CONFIGURE_OUTCOME: ${{ steps.configure.outcome }}
           UPLOAD_OUTCOME: ${{ steps.upload.outcome }}
           DEPLOY_OUTCOME: ${{ steps.deployment.outcome }}
           VERIFY_OUTCOME: ${{ steps.verify.outcome }}
