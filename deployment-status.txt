@@ -1,0 +1,6 @@
+reassemble=success
+configure=failure
+upload=skipped
+deploy=skipped
+verify=skipped
+workflow_commit=610f825e12597fb7fe9b4cb368e3b249caeea952
