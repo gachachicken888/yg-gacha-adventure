@@ -19,6 +19,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Reassemble Godot WebAssembly engine
+        shell: bash
+        run: |
+          cat index.wasm.part0 index.wasm.part1 index.wasm.part2 index.wasm.part3 index.wasm.part4 > index.wasm
+          test "$(stat -c%s index.wasm)" -eq 39509339
+          rm -f index.wasm.part0 index.wasm.part1 index.wasm.part2 index.wasm.part3 index.wasm.part4
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
         with:

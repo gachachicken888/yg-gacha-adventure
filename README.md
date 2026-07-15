@@ -2,6 +2,6 @@
 
 A 2D side-scrolling action game built with Godot.
 
-## Play online
+## Play
 
-https://gachachicken888.github.io/yg-gacha-adventure/
+The latest web version is deployed with GitHub Pages.
