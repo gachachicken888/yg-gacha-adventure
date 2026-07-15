@@ -32,8 +32,6 @@ jobs:
       - name: Configure GitHub Pages
         id: configure
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Upload web build
         id: upload
         uses: actions/upload-pages-artifact@v3
