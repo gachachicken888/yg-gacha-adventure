@@ -23,9 +23,12 @@ jobs:
         id: reassemble
         shell: bash
         run: |
-          cat index.wasm.part0 index.wasm.part1 index.wasm.part2 index.wasm.part3 index.wasm.part4 > index.wasm
+          cat index.wasm.gzpart* > index.wasm.gz
+          test "$(stat -c%s index.wasm.gz)" -eq 10111653
+          gzip -t index.wasm.gz
+          gzip -dc index.wasm.gz > index.wasm
           test "$(stat -c%s index.wasm)" -eq 39509339
-          rm -f index.wasm.part0 index.wasm.part1 index.wasm.part2 index.wasm.part3 index.wasm.part4
+          rm -f index.wasm.gz index.wasm.gzpart*
       - name: Configure GitHub Pages
         id: configure
         uses: actions/configure-pages@v5
