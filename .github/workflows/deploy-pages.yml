@@ -29,6 +29,12 @@ jobs:
           gzip -dc index.wasm.gz > index.wasm
           test "$(stat -c%s index.wasm)" -eq 39509339
           rm -f index.wasm.gz index.wasm.gzpart*
+          cat index.pck.gzpart* > index.pck.gz
+          test "$(stat -c%s index.pck.gz)" -eq 16174797
+          gzip -t index.pck.gz
+          gzip -dc index.pck.gz > index.pck
+          test "$(stat -c%s index.pck)" -eq 16556544
+          rm -f index.pck.gz index.pck.gzpart*
       - name: Configure GitHub Pages
         id: configure
         uses: actions/configure-pages@v5
@@ -57,7 +63,7 @@ jobs:
                test "$wasm_code" = "200" &&
                test "$pck_code" = "200" &&
                test "$wasm_size" -eq 39509339 &&
-               test "$pck_size" -eq 16548956; then
+               test "$pck_size" -eq 16556544; then
               break
             fi
             sleep 10
@@ -68,7 +74,7 @@ jobs:
           test "$wasm_code" = "200"
           test "$pck_code" = "200"
           test "$wasm_size" -eq 39509339
-          test "$pck_size" -eq 16548956
+          test "$pck_size" -eq 16556544
       - name: Record diagnostic result
         if: always()
         shell: bash
